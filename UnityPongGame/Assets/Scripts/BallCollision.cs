@@ -22,8 +22,14 @@ public class BallCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        float speed = lastVel.magnitude;
+        if(collision.gameObject.tag == "Goal")
+        {
+            GameObject.Find("GameEvents").GetComponent<BallEvents>().startNewRound();
+            Destroy(this.gameObject);
+            return;
+        }
 
+        float speed = lastVel.magnitude;
         Vector3 dir = Vector3.Reflect(lastVel.normalized, collision.GetContact(0).normal);
         body.velocity = dir * speed;
     
