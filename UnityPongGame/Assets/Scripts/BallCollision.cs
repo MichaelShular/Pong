@@ -6,12 +6,14 @@ public class BallCollision : MonoBehaviour
 {
     private Rigidbody2D body;
     private Vector3 lastVel;
+    private GameObject AIPaddle;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();   
+        body = GetComponent<Rigidbody2D>();
+        AIPaddle = GameObject.FindGameObjectWithTag("AIPaddle");
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class BallCollision : MonoBehaviour
         if(collision.gameObject.tag == "Goal")
         {
             GameObject.Find("GameEvents").GetComponent<BallEvents>().startNewRound();
+            AIPaddle.GetComponent<AIMovement>().enabled = false;
             Destroy(this.gameObject);
             return;
         }

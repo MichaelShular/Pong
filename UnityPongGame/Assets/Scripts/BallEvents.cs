@@ -8,6 +8,7 @@ public class BallEvents : MonoBehaviour
     private float timeBetweenRounds = 2.0f;
     private float nextTime = 0.0f;
     private bool startTimer = false;
+    [SerializeField] private GameObject AIPaddle;
     void Start()
     {
         
@@ -19,7 +20,10 @@ public class BallEvents : MonoBehaviour
         if(startTimer && Time.time > nextTime)
         {
             nextTime = Time.time + 100;
-            Instantiate(ball);
+            GameObject temp;
+            temp = Instantiate(ball);
+            AIPaddle.GetComponent<AIMovement>().enabled = true;
+            AIPaddle.GetComponent<AIMovement>().setGameObjectBall(temp);
         }
     }
 
