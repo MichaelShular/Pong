@@ -36,4 +36,9 @@ public class ButtonsScript : MonoBehaviour
     {
         Application.Quit();
     } 
+
+    public void gameVolumeControl(float a)
+    {
+        AudioListener.volume = a;
+    }
 }

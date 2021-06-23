@@ -36,4 +36,8 @@ public class GameUIControl : MonoBehaviour
     {
         SceneManager.LoadScene("Main_Menu");
     }
+    public void gameVolumeControl(float a)
+    {
+        AudioListener.volume = a;
+    }
 }
