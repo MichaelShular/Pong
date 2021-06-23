@@ -9,6 +9,7 @@ TagManager:
   - Goal
   - Paddle
   - AIPaddle
+  - GoalForAI
   layers:
   - Default
   - TransparentFX

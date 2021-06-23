@@ -42,6 +42,22 @@ public class BallCollision : MonoBehaviour
             return;
         }
 
+        if (collision.gameObject.tag == "Paddle")
+        {
+            float tempDiff;
+            tempDiff = GameObject.Find("Paddle").GetComponent<Transform>().position.y - collision.GetContact(0).point.y;
+            if (tempDiff < 0)
+            {
+                body.AddForce(Vector2.up * 1000);
+            }
+            if (tempDiff > 0)
+            {
+                body.AddForce(Vector2.down * 1000);
+            }
+
+        }
+
+
 
 
         float speed = lastVel.magnitude;

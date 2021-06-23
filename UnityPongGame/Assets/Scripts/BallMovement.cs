@@ -28,8 +28,4 @@ public class BallMovement : MonoBehaviour
 
     }
 
-    public void updateBallsSpeed(float a)
-    {
-        movementSpeed = a;
-    }
 }
