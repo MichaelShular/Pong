@@ -36,6 +36,7 @@ public class BallCollision : MonoBehaviour
 
         if(collision.gameObject.tag == "Goal" || collision.gameObject.tag == "GoalForAI")
         {
+            SoundManagerScript.PlaySound("goalHit");
             GameObject.Find("GameEvents").GetComponent<BallEvents>().startNewRound();
             AIPaddle.GetComponent<AIMovement>().enabled = false;
             Destroy(this.gameObject);
@@ -59,7 +60,7 @@ public class BallCollision : MonoBehaviour
 
 
 
-
+        SoundManagerScript.PlaySound("wallHit");
         float speed = lastVel.magnitude;
         Vector3 dir = Vector3.Reflect(lastVel.normalized, collision.GetContact(0).normal);
         body.velocity = dir * speed;
