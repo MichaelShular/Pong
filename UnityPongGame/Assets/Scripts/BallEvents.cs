@@ -11,7 +11,8 @@ public class BallEvents : MonoBehaviour
     [SerializeField] private GameObject AIPaddle;
     void Start()
     {
-        
+        //When game is replayed time scale need to reset
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
