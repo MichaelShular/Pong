@@ -10,6 +10,7 @@ TagManager:
   - Paddle
   - AIPaddle
   - GoalForAI
+  - PowerUp
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Goal
   - Wall
   - Ball
-  - 
+  - PowerUp
   - 
   - 
   - 

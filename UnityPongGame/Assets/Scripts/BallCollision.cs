@@ -45,6 +45,7 @@ public class BallCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "Paddle")
         {
+            PowerUpCollision.playerLastTouch(true);
             float tempDiff;
             tempDiff = GameObject.Find("Paddle").GetComponent<Transform>().position.y - collision.GetContact(0).point.y;
             if (tempDiff < 0)
@@ -57,10 +58,14 @@ public class BallCollision : MonoBehaviour
             }
 
         }
+        if (collision.gameObject.tag == "AIPaddle")
+        {
+            PowerUpCollision.playerLastTouch(false);
+        }
 
 
 
-        SoundManagerScript.PlaySound("wallHit");
+            SoundManagerScript.PlaySound("wallHit");
         float speed = lastVel.magnitude;
         Vector3 dir = Vector3.Reflect(lastVel.normalized, collision.GetContact(0).normal);
         body.velocity = dir * speed;
