@@ -35,7 +35,7 @@ public class PowerUpCollision : MonoBehaviour
             passOnPaddle = aiPaddle;
         }
 
-        choosePowerUP(passOnPaddle, collision.transform.position);
+        ChoosePowerUP(passOnPaddle, collision.transform.position);
 
         Destroy(this.gameObject);
     }
@@ -45,12 +45,12 @@ public class PowerUpCollision : MonoBehaviour
         didThePlayerTouchLast = a;
     }
 
-    public void choosePowerUP(GameObject a, Vector2 b)
+    public void ChoosePowerUP(GameObject a, Vector2 b)
     {
-        reflectBall();
+        SplitPaddle();
     }
 
-    public void powerUpScaleSize(GameObject a)
+    public void PowerUpScaleSize(GameObject a)
     {
         if (a.transform.localScale.y <= 10)
         {
@@ -58,7 +58,7 @@ public class PowerUpCollision : MonoBehaviour
         }
     }
 
-    public void powerDownScaleSize(GameObject a)
+    public void PowerDownScaleSize(GameObject a)
     {
         if (a.transform.localScale.y >= 2)
         {
@@ -66,7 +66,7 @@ public class PowerUpCollision : MonoBehaviour
         }
     }
 
-    public void powerFreemovement()
+    public void PowerFreemovement()
     {
         PlayerControl.freeMovementActive(!PlayerControl.getCanFreelyMove());
     }
@@ -79,22 +79,26 @@ public class PowerUpCollision : MonoBehaviour
         temp.GetComponent<Transform>().position = a;
     }
 
-    public void speedUpBall()
+    public void SpeedUpBall()
     {
         Vector2 temp = GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody2D>().velocity;
         temp = temp.normalized;
         GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody2D>().AddForce(temp * 50, ForceMode2D.Impulse);
     }
 
-    public void reflectBall()
-    {
-       
+    public void ReflectBall()
+    { 
         GameObject temp = GameObject.FindGameObjectWithTag("Ball");
         float speed = temp.GetComponent<Rigidbody2D>().velocity.magnitude;
         Vector3 dir = Vector3.Reflect(temp.GetComponent<Rigidbody2D>().velocity.normalized, temp.GetComponent<Transform>().position.normalized);
-        Debug.Log(speed);
-        Debug.Log(dir);
-
         temp.GetComponent<Rigidbody2D>().velocity = dir * speed;
+    }
+    public void SplitPaddle()
+    {
+        playerPaddle.GetComponent<SpriteRenderer>().enabled = !playerPaddle.GetComponent<SpriteRenderer>().enabled;
+        playerPaddle.GetComponent<BoxCollider2D>().enabled = !playerPaddle.GetComponent<BoxCollider2D>().enabled;
+
+        playerPaddle.transform.GetChild(0).gameObject.SetActive(!playerPaddle.GetComponent<BoxCollider2D>().enabled);
+        playerPaddle.transform.GetChild(1).gameObject.SetActive(!playerPaddle.GetComponent<BoxCollider2D>().enabled);
     }
 }
