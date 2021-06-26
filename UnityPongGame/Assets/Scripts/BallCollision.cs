@@ -65,7 +65,7 @@ public class BallCollision : MonoBehaviour
 
 
 
-            SoundManagerScript.PlaySound("wallHit");
+        SoundManagerScript.PlaySound("wallHit");
         float speed = lastVel.magnitude;
         Vector3 dir = Vector3.Reflect(lastVel.normalized, collision.GetContact(0).normal);
         body.velocity = dir * speed;

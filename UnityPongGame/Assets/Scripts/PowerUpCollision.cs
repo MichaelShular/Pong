@@ -21,7 +21,7 @@ public class PowerUpCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,7 +47,7 @@ public class PowerUpCollision : MonoBehaviour
 
     public void choosePowerUP(GameObject a, Vector2 b)
     {
-        multiShoot(b);
+        reflectBall();
     }
 
     public void powerUpScaleSize(GameObject a)
@@ -79,5 +79,22 @@ public class PowerUpCollision : MonoBehaviour
         temp.GetComponent<Transform>().position = a;
     }
 
+    public void speedUpBall()
+    {
+        Vector2 temp = GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody2D>().velocity;
+        temp = temp.normalized;
+        GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody2D>().AddForce(temp * 50, ForceMode2D.Impulse);
+    }
 
+    public void reflectBall()
+    {
+       
+        GameObject temp = GameObject.FindGameObjectWithTag("Ball");
+        float speed = temp.GetComponent<Rigidbody2D>().velocity.magnitude;
+        Vector3 dir = Vector3.Reflect(temp.GetComponent<Rigidbody2D>().velocity.normalized, temp.GetComponent<Transform>().position.normalized);
+        Debug.Log(speed);
+        Debug.Log(dir);
+
+        temp.GetComponent<Rigidbody2D>().velocity = dir * speed;
+    }
 }
