@@ -22,7 +22,7 @@ public class PowerUpEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextTime)
+        if ( !GameObject.FindGameObjectWithTag("PowerUp") && Time.time > nextTime)
         {
             nextTime = Time.time + timeUNtilNextPowerUp;
 

@@ -12,7 +12,9 @@ public class PowerUpCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerPaddle = GameObject.FindGameObjectWithTag("Paddle");
+        aiPaddle = GameObject.FindGameObjectWithTag("AIPaddle");
+
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class PowerUpCollision : MonoBehaviour
 
     public void choosePowerUP(GameObject a)
     {
-        powerUpScaleSize(a);
+        powerFreemovement();
     }
 
     public void powerUpScaleSize(GameObject a)
@@ -53,6 +55,20 @@ public class PowerUpCollision : MonoBehaviour
         {
             a.transform.localScale = new Vector2(1, a.transform.localScale.y + 2);
         }
+    }
+
+    public void powerDownScaleSize(GameObject a)
+    {
+        if (a.transform.localScale.y >= 2)
+        {
+            a.transform.localScale = new Vector2(1, a.transform.localScale.y - 2);
+        }
+    }
+
+    public void powerFreemovement()
+    {
+        
+        PlayerControl.freeMovementActive(!PlayerControl.getCanFreelyMove());
     }
 
 }
