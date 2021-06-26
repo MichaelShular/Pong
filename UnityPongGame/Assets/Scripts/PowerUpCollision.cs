@@ -46,8 +46,34 @@ public class PowerUpCollision : MonoBehaviour
     }
 
     public void ChoosePowerUP(GameObject a, Vector2 b)
-    {
-        SplitPaddle();
+    { 
+        int whichPowerUp = Random.Range(0, 7);
+
+        switch(whichPowerUp)
+        {
+            case 0:
+                PowerUpScaleSize(a);
+                break;
+            case 1:
+                PowerDownScaleSize(a);
+                break;
+            case 2:
+                PowerFreemovement();
+                break;
+            case 3:
+                multiShoot(b);
+                break;
+            case 4:
+                SpeedUpBall();
+                break;
+            case 5:
+                ReflectBall();
+                break;
+            case 6:
+                SplitPaddle();
+                break;
+        }
+        
     }
 
     public void PowerUpScaleSize(GameObject a)
