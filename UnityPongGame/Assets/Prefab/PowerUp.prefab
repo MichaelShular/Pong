@@ -94,7 +94,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -115,3 +115,4 @@ MonoBehaviour:
   aiPaddle: {fileID: 0}
   playerPaddle: {fileID: 0}
   passOnPaddle: {fileID: 0}
+  ball: {fileID: 9087405524260140370, guid: 603342549cb92b14cb7960f478c527fe, type: 3}

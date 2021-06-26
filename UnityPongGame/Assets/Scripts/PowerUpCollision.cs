@@ -7,6 +7,7 @@ public class PowerUpCollision : MonoBehaviour
     [SerializeField] private GameObject aiPaddle;
     [SerializeField] private GameObject playerPaddle;
     [SerializeField] private GameObject passOnPaddle;
+    [SerializeField] private GameObject ball;
     static private bool didThePlayerTouchLast;
 
     // Start is called before the first frame update
@@ -23,7 +24,7 @@ public class PowerUpCollision : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (didThePlayerTouchLast == true)
         {
@@ -34,7 +35,7 @@ public class PowerUpCollision : MonoBehaviour
             passOnPaddle = aiPaddle;
         }
 
-        choosePowerUP(passOnPaddle);
+        choosePowerUP(passOnPaddle, collision.transform.position);
 
         Destroy(this.gameObject);
     }
@@ -44,9 +45,9 @@ public class PowerUpCollision : MonoBehaviour
         didThePlayerTouchLast = a;
     }
 
-    public void choosePowerUP(GameObject a)
+    public void choosePowerUP(GameObject a, Vector2 b)
     {
-        powerFreemovement();
+        multiShoot(b);
     }
 
     public void powerUpScaleSize(GameObject a)
@@ -67,8 +68,16 @@ public class PowerUpCollision : MonoBehaviour
 
     public void powerFreemovement()
     {
-        
         PlayerControl.freeMovementActive(!PlayerControl.getCanFreelyMove());
     }
+
+    public void multiShoot(Vector2 a)
+    {
+        GameObject temp;
+        temp = Instantiate(ball);
+        temp.GetComponent<Rigidbody2D>().angularVelocity = 10;
+        temp.GetComponent<Transform>().position = a;
+    }
+
 
 }

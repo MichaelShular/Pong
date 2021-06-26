@@ -12,13 +12,11 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        transform.position = new Vector2(0, Random.Range(-20.0f, 20.0f)); 
+        transform.position = new Vector2(0, Random.Range(-20.0f, 20.0f));
         xAxisPosativeOrNegative = Random.value < 0.5f ? 1 : -1;
         yAxisPosativeOrNegative = Random.value < 0.5f ? 1 : -1;
         body.velocity = new Vector2(Mathf.Sin(45) * movementSpeed * xAxisPosativeOrNegative,
-            Mathf.Cos(45) * movementSpeed * yAxisPosativeOrNegative);
-        
-        
+          Mathf.Cos(45) * movementSpeed * yAxisPosativeOrNegative);
     }
 
     // Update is called once per frame
